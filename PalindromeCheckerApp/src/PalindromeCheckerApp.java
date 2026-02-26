@@ -1,53 +1,37 @@
 /**
  * ================================================
- * UseCase5PalindromeCheckerApp
+ * UseCase2PalindromeCheckerApp
  * ================================================
  *
- * Use Case 5: Stack-Based Palindrome Checker
+ * Use Case 2: Print a Hardcoded Palindrome Result
  *
  * Goal:
- * - Use stack to reverse characters and validate palindrome.
+ * - Display whether a hardcoded string is a palindrome.
  *
  * Flow:
- * - Push characters into stack
- * - Pop and compare with original
- * - Print result
+ * - Program starts
+ * - Hardcoded string is checked
+ * - Result is printed
+ * - Program exits
  *
  * Concepts:
- * - Stack (LIFO)
- * - Push and Pop operations
- * - String comparison
+ * - String manipulation
+ * - Conditional statements
+ * - Console output
  *
- * Author: Developer
- * Version: 1.0
+ * @author Developer
+ * @version 1.0
  */
-
-import java.util.Stack;
-
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
-        String word = "deified"; // hardcoded string
+        String word = "madam";  // hardcoded string
 
-        Stack<Character> stack = new Stack<>();
+        // Reverse the string
+        String reversed = new StringBuilder(word).reverse().toString();
 
-        // Push all characters onto stack
-        for (int i = 0; i < word.length(); i++) {
-            stack.push(word.charAt(i));
-        }
-
-        boolean isPalindrome = true;
-
-        // Pop from stack and compare with original
-        for (int i = 0; i < word.length(); i++) {
-            if (word.charAt(i) != stack.pop()) {
-                isPalindrome = false;
-                break;
-            }
-        }
-
-        // Print result
-        if (isPalindrome) {
+        // Check if palindrome
+        if (word.equals(reversed)) {
             System.out.println("The word '" + word + "' is a palindrome.");
         } else {
             System.out.println("The word '" + word + "' is NOT a palindrome.");
