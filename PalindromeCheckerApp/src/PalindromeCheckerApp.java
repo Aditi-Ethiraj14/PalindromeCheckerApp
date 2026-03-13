@@ -1,56 +1,70 @@
 /**
- * ================================================
- * UseCase5PalindromeCheckerApp
- * ================================================
+ * =============================================================
+ * MAIN CLASS - UseCase13PalindromeCheckerApp
+ * =============================================================
  *
- * Use Case 5: Stack-Based Palindrome Checker
+ * Use Case 13: Performance Comparison
  *
- * Goal:
- * - Use stack to reverse characters and validate palindrome.
+ * Description:
+ * This class measures and compares the execution
+ * performance of palindrome validation algorithms.
  *
- * Flow:
- * - Push characters into stack
- * - Pop and compare with original
- * - Print result
+ * At this stage, the application:
+ * - Uses a palindrome strategy implementation
+ * - Captures execution start and end time
+ * - Calculates total execution duration
+ * - Displays benchmarking results
  *
- * Concepts:
- * - Stack (LIFO)
- * - Push and Pop operations
- * - String comparison
+ * This use case focuses on performance
+ * measurement and algorithm benchmarking concepts.
  *
- * Author: Developer
- * Version: 1.0
+ * The goal is to introduce benchmarking concepts.
+ *
+ * @author Developer
+ * @version 13.0
  */
-
-import java.util.Stack;
 
 public class PalindromeCheckerApp {
 
+    /**
+     * Application entry point for UC13.
+     *
+     * @param args Command-line arguments
+     */
     public static void main(String[] args) {
-        String word = "deified"; // hardcoded string
 
-        Stack<Character> stack = new Stack<>();
+        // Input string
+        String input = "Level";
 
-        // Push all characters onto stack
-        for (int i = 0; i < word.length(); i++) {
-            stack.push(word.charAt(i));
-        }
+        // Normalize input
+        input = input.toLowerCase();
 
+        // Start time capture
+        long startTime = System.nanoTime();
+
+        // Palindrome checking logic
         boolean isPalindrome = true;
+        int start = 0;
+        int end = input.length() - 1;
 
-        // Pop from stack and compare with original
-        for (int i = 0; i < word.length(); i++) {
-            if (word.charAt(i) != stack.pop()) {
+        while (start < end) {
+            if (input.charAt(start) != input.charAt(end)) {
                 isPalindrome = false;
                 break;
             }
+            start++;
+            end--;
         }
 
-        // Print result
-        if (isPalindrome) {
-            System.out.println("The word '" + word + "' is a palindrome.");
-        } else {
-            System.out.println("The word '" + word + "' is NOT a palindrome.");
-        }
+        // End time capture
+        long endTime = System.nanoTime();
+
+        // Calculate execution duration
+        long executionTime = endTime - startTime;
+
+        // Display results
+        System.out.println("Input : " + input);
+        System.out.println("Is Palindrome? : " + isPalindrome);
+        System.out.println("Execution Time : " + executionTime + " ns");
     }
 }
