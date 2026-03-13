@@ -1,56 +1,72 @@
 /**
- * ================================================
- * UseCase5PalindromeCheckerApp
- * ================================================
- *
- * Use Case 5: Stack-Based Palindrome Checker
- *
- * Goal:
- * - Use stack to reverse characters and validate palindrome.
- *
- * Flow:
- * - Push characters into stack
- * - Pop and compare with original
- * - Print result
- *
- * Concepts:
- * - Stack (LIFO)
- * - Push and Pop operations
- * - String comparison
- *
- * Author: Developer
- * Version: 1.0
+ * =============================================================
+ * MAIN CLASS: UseCase6PalindromeCheckerApp
+ * =============================================================
+
+ * Use Case 6: Queue + Stack Fairness Check
+
+ * Description:
+ * This class demonstrates palindrome validation using
+ * two different data structures:
+
+ * - Queue (FIFO First In First Out)
+ * - Stack (LIFO Last In First Out)
+
+ * Characters are inserted into both structures and then
+ * compared by removing from the front of the queue and
+ * the top of the stack.
+
+ * If all characters match, the input string is confirmed
+ * as a palindrome.
+
+ * This use case helps understand how FIFO and LIFO
+ * behaviors can be combined for symmetric comparison.
+
+ * @author Developer
+ * @version 6.0
  */
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 public class PalindromeCheckerApp {
 
+    /**
+     * Application entry point for UC6.
+     *
+     * @param args Command-line arguments
+     */
     public static void main(String[] args) {
-        String word = "deified"; // hardcoded string
 
+        // Define the input string to validate
+        String input = "civic";
+
+        // Create a Queue to store characters in FIFO order
+        Queue<Character> queue = new LinkedList<>();
+
+        // Create a Stack to store characters in LIFO order
         Stack<Character> stack = new Stack<>();
 
-        // Push all characters onto stack
-        for (int i = 0; i < word.length(); i++) {
-            stack.push(word.charAt(i));
+        // Insert each character into both queue and stack
+        for (char c : input.toCharArray()) {
+            queue.add(c);  // enqueue
+            stack.push(c); // push
         }
 
+        // Flag to track palindrome status
         boolean isPalindrome = true;
 
-        // Pop from stack and compare with original
-        for (int i = 0; i < word.length(); i++) {
-            if (word.charAt(i) != stack.pop()) {
+        // Compare characters until the queue becomes empty
+        while (!queue.isEmpty()) {
+            if (!queue.poll().equals(stack.pop())) {
                 isPalindrome = false;
                 break;
             }
         }
 
-        // Print result
-        if (isPalindrome) {
-            System.out.println("The word '" + word + "' is a palindrome.");
-        } else {
-            System.out.println("The word '" + word + "' is NOT a palindrome.");
-        }
+        // Display results
+        System.out.println("Input: " + input);
+        System.out.println("Is Palindrome?: " + isPalindrome);
     }
 }
