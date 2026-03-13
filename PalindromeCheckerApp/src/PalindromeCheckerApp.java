@@ -1,56 +1,76 @@
 /**
- * ================================================
- * UseCase5PalindromeCheckerApp
- * ================================================
+ * =============================================================
+ * MAIN CLASS - UseCase11PalindromeCheckerApp
+ * =============================================================
  *
- * Use Case 5: Stack-Based Palindrome Checker
+ * Use Case 11: Object-Oriented Palindrome Service
  *
- * Goal:
- * - Use stack to reverse characters and validate palindrome.
+ * Description:
+ * This class demonstrates palindrome validation using
+ * object-oriented design.
  *
- * Flow:
- * - Push characters into stack
- * - Pop and compare with original
- * - Print result
+ * The palindrome logic is encapsulated inside a
+ * PalindromeService class.
  *
- * Concepts:
- * - Stack (LIFO)
- * - Push and Pop operations
- * - String comparison
+ * This improves:
+ * - Reusability
+ * - Maintainability
+ * - Separation of concerns
  *
- * Author: Developer
- * Version: 1.0
+ * @author Developer
+ * @version 11.0
  */
-
-import java.util.Stack;
 
 public class PalindromeCheckerApp {
 
+    /**
+     * Application entry point for UC11.
+     *
+     * @param args Command-line arguments
+     */
     public static void main(String[] args) {
-        String word = "deified"; // hardcoded string
 
-        Stack<Character> stack = new Stack<>();
+        // Input string
+        String input = "racecar";
 
-        // Push all characters onto stack
-        for (int i = 0; i < word.length(); i++) {
-            stack.push(word.charAt(i));
-        }
+        // Create service object
+        PalindromeService service = new PalindromeService();
 
-        boolean isPalindrome = true;
+        // Call service method
+        boolean result = service.checkPalindrome(input);
 
-        // Pop from stack and compare with original
-        for (int i = 0; i < word.length(); i++) {
-            if (word.charAt(i) != stack.pop()) {
-                isPalindrome = false;
-                break;
+        // Display result
+        System.out.println("Input : " + input);
+        System.out.println("Is Palindrome? : " + result);
+    }
+}
+
+/**
+ * Service class that contains palindrome logic.
+ */
+class PalindromeService {
+
+    /**
+     * Checks whether the input string is a palindrome.
+     *
+     * @param input Input string
+     * @return true if palindrome, false otherwise
+     */
+    public boolean checkPalindrome(String input) {
+
+        // Initialize pointers
+        int start = 0;
+        int end = input.length() - 1;
+
+        // Compare characters moving inward
+        while (start < end) {
+            if (input.charAt(start) != input.charAt(end)) {
+                return false;
             }
+            start++;
+            end--;
         }
 
-        // Print result
-        if (isPalindrome) {
-            System.out.println("The word '" + word + "' is a palindrome.");
-        } else {
-            System.out.println("The word '" + word + "' is NOT a palindrome.");
-        }
+        return true;
     }
 }
