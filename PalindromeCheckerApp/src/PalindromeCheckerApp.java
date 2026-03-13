@@ -1,56 +1,58 @@
 /**
- * ================================================
- * UseCase5PalindromeCheckerApp
- * ================================================
+ * =============================================================
+ * MAIN CLASS - UseCase10PalindromeCheckerApp
+ * =============================================================
  *
- * Use Case 5: Stack-Based Palindrome Checker
+ * Use Case 10: Normalized Palindrome Validation
  *
- * Goal:
- * - Use stack to reverse characters and validate palindrome.
+ * Description:
+ * This class validates a palindrome after preprocessing
+ * the input string.
  *
- * Flow:
- * - Push characters into stack
- * - Pop and compare with original
- * - Print result
+ * Normalization includes:
+ * - Removing spaces and symbols
+ * - Converting to lowercase
  *
- * Concepts:
- * - Stack (LIFO)
- * - Push and Pop operations
- * - String comparison
+ * This ensures the palindrome check is logical rather
+ * than character-format dependent.
  *
- * Author: Developer
- * Version: 1.0
+ * Example:
+ * "A man a plan a canal Panama"
+ *
+ * @author Developer
+ * @version 10.0
  */
-
-import java.util.Stack;
 
 public class PalindromeCheckerApp {
 
+    /**
+     * Application entry point for UC10.
+     *
+     * @param args Command-line arguments
+     */
     public static void main(String[] args) {
-        String word = "deified"; // hardcoded string
 
-        Stack<Character> stack = new Stack<>();
+        // Original input string
+        String input = "A man a plan a canal Panama";
 
-        // Push all characters onto stack
-        for (int i = 0; i < word.length(); i++) {
-            stack.push(word.charAt(i));
-        }
+        // Normalize string: remove non-alphanumeric characters and convert to lowercase
+        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
 
+        // Assume palindrome initially
         boolean isPalindrome = true;
 
-        // Pop from stack and compare with original
-        for (int i = 0; i < word.length(); i++) {
-            if (word.charAt(i) != stack.pop()) {
+        // Compare characters from both ends
+        for (int i = 0; i < normalized.length() / 2; i++) {
+
+            // Compare symmetric characters
+            if (normalized.charAt(i) != normalized.charAt(normalized.length() - 1 - i)) {
                 isPalindrome = false;
                 break;
             }
         }
 
-        // Print result
-        if (isPalindrome) {
-            System.out.println("The word '" + word + "' is a palindrome.");
-        } else {
-            System.out.println("The word '" + word + "' is NOT a palindrome.");
-        }
+        // Display results
+        System.out.println("Input : " + input);
+        System.out.println("Is Palindrome? : " + isPalindrome);
     }
 }
