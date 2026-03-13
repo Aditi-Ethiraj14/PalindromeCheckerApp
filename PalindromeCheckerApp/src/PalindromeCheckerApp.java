@@ -18,7 +18,7 @@
  * This demonstrates how LinkedList supports
  * double-ended operations for symmetric validation.
 
- * @author Vishalini P G
+ * @author Developer
  * @version 8.0
  */
 
